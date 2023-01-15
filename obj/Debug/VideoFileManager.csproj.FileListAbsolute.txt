@@ -1,0 +1,11 @@
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\bin\Debug\VideoFileManager.exe.config
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\bin\Debug\VideoFileManager.exe
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\bin\Debug\VideoFileManager.pdb
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\VideoFileManager.csproj.AssemblyReference.cache
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\VideoFileManager.csproj.SuggestedBindingRedirects.cache
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\VideoFileManager.Properties.Resources.resources
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\VideoFileManager.csproj.GenerateResource.cache
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\VideoFileManager.csproj.CoreCompileInputs.cache
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\VideoFileManager.exe
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\VideoFileManager.pdb
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\VideoFileManager.VFMForm.resources

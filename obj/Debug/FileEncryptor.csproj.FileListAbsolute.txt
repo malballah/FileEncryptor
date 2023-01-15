@@ -1,0 +1,11 @@
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\FileEncryptor.csproj.AssemblyReference.cache
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\FileEncryptor.csproj.SuggestedBindingRedirects.cache
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\FileEncryptor.Properties.Resources.resources
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\FileEncryptor.csproj.GenerateResource.cache
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\FileEncryptor.csproj.CoreCompileInputs.cache
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\bin\Debug\FileEncryptor.exe.config
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\bin\Debug\FileEncryptor.exe
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\bin\Debug\FileEncryptor.pdb
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\FileEncryptor.FEForm.resources
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\FileEncryptor.exe
+C:\Users\mahmo\source\repos\VideoEncryptor\VideoFileManager\obj\Debug\FileEncryptor.pdb
