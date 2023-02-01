@@ -36,7 +36,6 @@ namespace FileEncryptor
             this.filesBox = new System.Windows.Forms.ListBox();
             this.buttonAction = new System.Windows.Forms.Button();
             this.textKey = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.radioEncrypt = new System.Windows.Forms.RadioButton();
             this.radioDecrypt = new System.Windows.Forms.RadioButton();
@@ -44,7 +43,6 @@ namespace FileEncryptor
             this.textStatus = new System.Windows.Forms.TextBox();
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnBrowse = new System.Windows.Forms.Button();
-            this.checkSelectAll = new System.Windows.Forms.CheckBox();
             this.confirmKeyLbl = new System.Windows.Forms.Label();
             this.textKeyConfirm = new System.Windows.Forms.TextBox();
             this.errorKeysLbl = new System.Windows.Forms.Label();
@@ -53,13 +51,16 @@ namespace FileEncryptor
             this.label4 = new System.Windows.Forms.Label();
             this.txtBoxDeleteAfter = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.outputFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.outputFolderButton = new System.Windows.Forms.Button();
+            this.lblOutputFolder = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // filesBox
             // 
             this.filesBox.FormattingEnabled = true;
-            this.filesBox.Location = new System.Drawing.Point(12, 120);
+            this.filesBox.Location = new System.Drawing.Point(12, 91);
             this.filesBox.Name = "filesBox";
             this.filesBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.filesBox.Size = new System.Drawing.Size(185, 160);
@@ -67,7 +68,7 @@ namespace FileEncryptor
             // 
             // buttonAction
             // 
-            this.buttonAction.Location = new System.Drawing.Point(12, 296);
+            this.buttonAction.Location = new System.Drawing.Point(12, 313);
             this.buttonAction.Name = "buttonAction";
             this.buttonAction.Size = new System.Drawing.Size(185, 23);
             this.buttonAction.TabIndex = 1;
@@ -82,15 +83,6 @@ namespace FileEncryptor
             this.textKey.PasswordChar = '*';
             this.textKey.Size = new System.Drawing.Size(189, 20);
             this.textKey.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 100);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Found Files";
             // 
             // label2
             // 
@@ -151,24 +143,13 @@ namespace FileEncryptor
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(12, 71);
+            this.btnBrowse.Location = new System.Drawing.Point(12, 63);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnBrowse.TabIndex = 15;
-            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.Text = "Select files";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
-            // 
-            // checkSelectAll
-            // 
-            this.checkSelectAll.AutoSize = true;
-            this.checkSelectAll.Location = new System.Drawing.Point(126, 99);
-            this.checkSelectAll.Name = "checkSelectAll";
-            this.checkSelectAll.Size = new System.Drawing.Size(70, 17);
-            this.checkSelectAll.TabIndex = 16;
-            this.checkSelectAll.Text = "Select All";
-            this.checkSelectAll.UseVisualStyleBackColor = true;
-            this.checkSelectAll.CheckedChanged += new System.EventHandler(this.checkSelectAll_CheckedChanged);
             // 
             // confirmKeyLbl
             // 
@@ -215,7 +196,7 @@ namespace FileEncryptor
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(300, 301);
+            this.label4.Location = new System.Drawing.Point(300, 318);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 13);
             this.label4.TabIndex = 21;
@@ -223,26 +204,45 @@ namespace FileEncryptor
             // 
             // txtBoxDeleteAfter
             // 
-            this.txtBoxDeleteAfter.Location = new System.Drawing.Point(393, 299);
+            this.txtBoxDeleteAfter.Location = new System.Drawing.Point(393, 316);
             this.txtBoxDeleteAfter.Name = "txtBoxDeleteAfter";
             this.txtBoxDeleteAfter.Size = new System.Drawing.Size(37, 20);
             this.txtBoxDeleteAfter.TabIndex = 22;
-            this.txtBoxDeleteAfter.Text = "60";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(436, 302);
+            this.label5.Location = new System.Drawing.Point(436, 319);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 23;
             this.label5.Text = "Minutes";
             // 
+            // outputFolderButton
+            // 
+            this.outputFolderButton.Location = new System.Drawing.Point(12, 254);
+            this.outputFolderButton.Name = "outputFolderButton";
+            this.outputFolderButton.Size = new System.Drawing.Size(97, 23);
+            this.outputFolderButton.TabIndex = 24;
+            this.outputFolderButton.Text = "Select output folder";
+            this.outputFolderButton.UseVisualStyleBackColor = true;
+            this.outputFolderButton.Click += new System.EventHandler(this.outputFolderButton_Click);
+            // 
+            // lblOutputFolder
+            // 
+            this.lblOutputFolder.AutoSize = true;
+            this.lblOutputFolder.Location = new System.Drawing.Point(14, 280);
+            this.lblOutputFolder.Name = "lblOutputFolder";
+            this.lblOutputFolder.Size = new System.Drawing.Size(0, 13);
+            this.lblOutputFolder.TabIndex = 25;
+            // 
             // FEForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 328);
+            this.ClientSize = new System.Drawing.Size(517, 344);
+            this.Controls.Add(this.lblOutputFolder);
+            this.Controls.Add(this.outputFolderButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtBoxDeleteAfter);
             this.Controls.Add(this.label4);
@@ -250,13 +250,11 @@ namespace FileEncryptor
             this.Controls.Add(this.textExt);
             this.Controls.Add(this.confirmKeyLbl);
             this.Controls.Add(this.textKeyConfirm);
-            this.Controls.Add(this.checkSelectAll);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.textStatus);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.errorKeysLbl);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.textKey);
             this.Controls.Add(this.buttonAction);
             this.Controls.Add(this.filesBox);
@@ -275,7 +273,6 @@ namespace FileEncryptor
         private System.Windows.Forms.ListBox filesBox;
         private System.Windows.Forms.Button buttonAction;
         private System.Windows.Forms.TextBox textKey;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RadioButton radioEncrypt;
         private System.Windows.Forms.RadioButton radioDecrypt;
@@ -283,7 +280,6 @@ namespace FileEncryptor
         private System.Windows.Forms.TextBox textStatus;
         private System.Windows.Forms.OpenFileDialog fileDialog;
         private System.Windows.Forms.Button btnBrowse;
-        private System.Windows.Forms.CheckBox checkSelectAll;
         private System.Windows.Forms.Label confirmKeyLbl;
         private System.Windows.Forms.TextBox textKeyConfirm;
         private System.Windows.Forms.Label errorKeysLbl;
@@ -292,6 +288,9 @@ namespace FileEncryptor
         private Label label4;
         private TextBox txtBoxDeleteAfter;
         private Label label5;
+        private FolderBrowserDialog outputFolderDialog;
+        private Button outputFolderButton;
+        private Label lblOutputFolder;
     }
 }
 

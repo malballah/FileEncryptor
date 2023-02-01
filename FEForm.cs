@@ -21,6 +21,7 @@ namespace FileEncryptor
     public partial class FEForm:Form
     {
         string folder;
+        string outputFolder;
         string outputExtension;
         Thread thread;
         List<string> files=new List<string>();
@@ -43,17 +44,55 @@ namespace FileEncryptor
 
         private void buttonAction_Click(object sender, EventArgs e)
         {
-            buttonAction.Enabled = false;            
+                     
             LoadFiles();
             if (radioDecrypt.Checked)
             {
+                if (!AllDecIsGood())
+                    return;
                 DecryptFiles();
                 StartDeleteTimer();
             }
             else
             {
+                if (!AllEncIsGood())
+                    return;
                 EncryptFiles();
             }      
+        }
+
+        private bool AllDecIsGood()
+        {
+            var message="";
+            if (string.IsNullOrEmpty(textKey.Text))
+                message = "Please enter the key!";
+            if (string.IsNullOrEmpty(outputFolder))
+                message += Environment.NewLine + "Output folder not selected!";
+            if (filesBox.SelectedItems.Count==0)
+                message += Environment.NewLine + "No files selected to decrypt!";
+            if (message.Length > 0)
+            {
+                MessageBox.Show(message);
+                return false;
+            }
+            return true;
+        }
+        private bool AllEncIsGood()
+        {
+            var message = "";
+            if (string.IsNullOrEmpty(textKey.Text) || textKey.Text != textKeyConfirm.Text)
+                message = "Keys are empty or not matched!";
+            if (string.IsNullOrEmpty(outputFolder))
+                message += Environment.NewLine + "Output folder not selected!";
+            if (filesBox.SelectedItems.Count == 0)
+                message += Environment.NewLine + "No files selected to encrypt!";
+
+            if (message.Length > 0)
+            {
+                MessageBox.Show(message);
+                return false;
+            }
+            return true;
         }
 
         private void StartDeleteTimer()
@@ -98,8 +137,6 @@ namespace FileEncryptor
             files.Clear();
             textExt.Text = string.Empty;
             outputExtension=string.Empty;
-            buttonAction.Enabled = true;
-            checkSelectAll.Checked = false;
             textStatus.ForeColor = Color.Black;
             textKey.Text = string.Empty;
             textKeyConfirm.Text = string.Empty;
@@ -132,9 +169,6 @@ namespace FileEncryptor
 
         private void EncryptFiles()
         {
-            if (!KeysMatched())
-                return;
-            CreateOutputDirectory("_dlls");
             var key = textKey.Text;
             thread = new Thread(() => {
                 var passed = true;
@@ -144,7 +178,7 @@ namespace FileEncryptor
                     var fileName = fileInfo.Name.Replace(fileInfo.Extension, outputExtension);
                     try
                     {
-                        Encryptor.EncryptFile(filePath, Path.Combine(folder, fileName), key);
+                        Encryptor.EncryptFile(filePath, Path.Combine(outputFolder, fileName), key);
                         ReportThreadStatus("pass", filePath);
                     }
                     catch (Exception exp)
@@ -186,14 +220,12 @@ namespace FileEncryptor
                     {
                         textStatus.Text = message;
                         textStatus.ForeColor = Color.Green;
-                        buttonAction.Enabled = true;
                     }
                     else if(status== "finish-fail")
                     {
                         list.Add(message);
                         textStatus.Lines = list.ToArray();
                         textStatus.ForeColor = Color.Red;
-                        buttonAction.Enabled = true;
                     }
                 };
                 textStatus.Invoke(safeWrite);
@@ -201,7 +233,6 @@ namespace FileEncryptor
         }
         private void DecryptFiles()
         {
-            CreateOutputDirectory("_vis");
             var key = textKey.Text;
             thread = new Thread(() => {
                 var passed = true;
@@ -211,7 +242,7 @@ namespace FileEncryptor
                     var fileName = fileInfo.Name.Replace(fileInfo.Extension, outputExtension);
                     try
                     {
-                        Encryptor.DecryptFile(filePath, Path.Combine(folder, fileName), key);
+                        Encryptor.DecryptFile(filePath, Path.Combine(outputFolder, fileName), key);
                         ReportThreadStatus("pass", filePath);
                     }
                     catch (Exception exp)
@@ -225,27 +256,6 @@ namespace FileEncryptor
             });
 
             thread.Start();
-        }
-
-        private bool KeysMatched()
-        {
-            if (textKey.Text == textKeyConfirm.Text)
-            {
-                errorKeysLbl.Text = string.Empty;
-                return true;
-            }
-            else
-            {
-                errorKeysLbl.Text = "Keys not matched";
-                return false;
-            }
-        }
-
-        private void CreateOutputDirectory(string name)
-        {
-            folder = Path.Combine(folder, name);
-            if (!Directory.Exists(folder))
-                Directory.CreateDirectory(folder);
         }
 
         private void VFMForm_Load(object sender, EventArgs e)
@@ -262,29 +272,19 @@ namespace FileEncryptor
                 foreach (var file in fileDialog.FileNames)
                 {
                     filesBox.Items.Add(file);
+                    filesBox.SetSelected(filesBox.Items.Count-1,true);
                 }
                 folder = new FileInfo(fileDialog.FileNames.FirstOrDefault()).DirectoryName;
             }
         }
 
-        private void checkSelectAll_CheckedChanged(object sender, EventArgs e)
+        private void outputFolderButton_Click(object sender, EventArgs e)
         {
-            buttonAction.Enabled = true;
-            if (checkSelectAll.Checked)
+            if (outputFolderDialog.ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < filesBox.Items.Count; i++)
-                {
-                    filesBox.SetSelected(i,true);
-                }               
-            }
-            else
-            {
-                for (int i = 0; i < filesBox.Items.Count; i++)
-                {
-                    filesBox.SetSelected(i, false);
-                }
+                outputFolder = outputFolderDialog.SelectedPath;
+                lblOutputFolder.Text = outputFolder;
             }
         }
-
     }
 }
