@@ -21,7 +21,10 @@ namespace FileEncryptor
             }
             base.Dispose(disposing);
         }
-
+        private void DisableClose()
+        {
+            this.ControlBox = false;
+        }
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -47,6 +50,9 @@ namespace FileEncryptor
             this.errorKeysLbl = new System.Windows.Forms.Label();
             this.textExt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtBoxDeleteAfter = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +69,7 @@ namespace FileEncryptor
             // 
             this.buttonAction.Location = new System.Drawing.Point(12, 296);
             this.buttonAction.Name = "buttonAction";
-            this.buttonAction.Size = new System.Drawing.Size(478, 23);
+            this.buttonAction.Size = new System.Drawing.Size(185, 23);
             this.buttonAction.TabIndex = 1;
             this.buttonAction.Text = "Decrypt Select Files";
             this.buttonAction.UseVisualStyleBackColor = true;
@@ -206,11 +212,40 @@ namespace FileEncryptor
             this.label3.TabIndex = 20;
             this.label3.Text = "Output Extension(Ex: mp4)";
             // 
-            // VFMForm
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(300, 301);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 13);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Delete Files After";
+            // 
+            // txtBoxDeleteAfter
+            // 
+            this.txtBoxDeleteAfter.Location = new System.Drawing.Point(393, 299);
+            this.txtBoxDeleteAfter.Name = "txtBoxDeleteAfter";
+            this.txtBoxDeleteAfter.Size = new System.Drawing.Size(37, 20);
+            this.txtBoxDeleteAfter.TabIndex = 22;
+            this.txtBoxDeleteAfter.Text = "60";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(436, 302);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Minutes";
+            // 
+            // FEForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 328);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtBoxDeleteAfter);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textExt);
             this.Controls.Add(this.confirmKeyLbl);
@@ -225,8 +260,8 @@ namespace FileEncryptor
             this.Controls.Add(this.textKey);
             this.Controls.Add(this.buttonAction);
             this.Controls.Add(this.filesBox);
-            this.Name = "VFMForm";
-            this.Text = "Video File Manager";
+            this.Name = "FEForm";
+            this.Text = "File Encryptor and Decryptor";
             this.Load += new System.EventHandler(this.VFMForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -254,6 +289,9 @@ namespace FileEncryptor
         private System.Windows.Forms.Label errorKeysLbl;
         private System.Windows.Forms.TextBox textExt;
         private System.Windows.Forms.Label label3;
+        private Label label4;
+        private TextBox txtBoxDeleteAfter;
+        private Label label5;
     }
 }
 

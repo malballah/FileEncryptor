@@ -48,11 +48,28 @@ namespace FileEncryptor
             if (radioDecrypt.Checked)
             {
                 DecryptFiles();
+                StartDeleteTimer();
             }
             else
             {
                 EncryptFiles();
             }      
+        }
+
+        private void StartDeleteTimer()
+        {
+            if (!string.IsNullOrEmpty(txtBoxDeleteAfter.Text))
+            {
+                var waitTime = TimeSpan.FromMinutes(double.Parse(txtBoxDeleteAfter.Text));
+                this.DisableClose();
+                new Thread(()=>{                
+                    Thread.Sleep(waitTime);
+                    //start deleting all files in decrypted folder
+                    Directory.Delete(folder,true);
+
+            }).Start();
+                
+            }
         }
 
         private void LoadFiles()
@@ -252,6 +269,7 @@ namespace FileEncryptor
 
         private void checkSelectAll_CheckedChanged(object sender, EventArgs e)
         {
+            buttonAction.Enabled = true;
             if (checkSelectAll.Checked)
             {
                 for (int i = 0; i < filesBox.Items.Count; i++)
