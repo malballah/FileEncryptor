@@ -218,6 +218,10 @@ namespace FileEncryptor
             this.label5.TabIndex = 23;
             this.label5.Text = "Minutes";
             // 
+            // outputFolderDialog
+            // 
+            this.outputFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            // 
             // outputFolderButton
             // 
             this.outputFolderButton.Location = new System.Drawing.Point(12, 254);
