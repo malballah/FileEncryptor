@@ -67,7 +67,7 @@ namespace FileEncryptor
                 message = "Please enter the key!";
             if (string.IsNullOrEmpty(outputFolder))
                 message += Environment.NewLine + "Output folder not selected!";
-            if (filesBox.SelectedItems.Count==0)
+            if (filesBox.Items.Count==0)
                 message += Environment.NewLine + "No files selected to decrypt!";
             if (message.Length > 0)
             {
@@ -83,7 +83,7 @@ namespace FileEncryptor
                 message = "Keys are empty or not matched!";
             if (string.IsNullOrEmpty(outputFolder))
                 message += Environment.NewLine + "Output folder not selected!";
-            if (filesBox.SelectedItems.Count == 0)
+            if (filesBox.Items.Count == 0)
                 message += Environment.NewLine + "No files selected to encrypt!";
 
             if (message.Length > 0)
