@@ -54,17 +54,22 @@ namespace FileEncryptor
             this.outputFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.outputFolderButton = new System.Windows.Forms.Button();
             this.lblOutputFolder = new System.Windows.Forms.Label();
+            this.lblFilesSize = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // filesBox
             // 
+            this.filesBox.AllowDrop = true;
             this.filesBox.FormattingEnabled = true;
             this.filesBox.Location = new System.Drawing.Point(12, 91);
             this.filesBox.Name = "filesBox";
             this.filesBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.filesBox.Size = new System.Drawing.Size(185, 160);
             this.filesBox.TabIndex = 0;
+            this.filesBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.filesBox_DragDrop);
+            this.filesBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.filesBox_DragEnter);
+            this.filesBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.filesBox_KeyUp);
             // 
             // buttonAction
             // 
@@ -240,11 +245,20 @@ namespace FileEncryptor
             this.lblOutputFolder.Size = new System.Drawing.Size(0, 13);
             this.lblOutputFolder.TabIndex = 25;
             // 
+            // lblFilesSize
+            // 
+            this.lblFilesSize.AutoSize = true;
+            this.lblFilesSize.Location = new System.Drawing.Point(123, 68);
+            this.lblFilesSize.Name = "lblFilesSize";
+            this.lblFilesSize.Size = new System.Drawing.Size(0, 13);
+            this.lblFilesSize.TabIndex = 26;
+            // 
             // FEForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 344);
+            this.Controls.Add(this.lblFilesSize);
             this.Controls.Add(this.lblOutputFolder);
             this.Controls.Add(this.outputFolderButton);
             this.Controls.Add(this.label5);
@@ -295,6 +309,7 @@ namespace FileEncryptor
         private FolderBrowserDialog outputFolderDialog;
         private Button outputFolderButton;
         private Label lblOutputFolder;
+        private Label lblFilesSize;
     }
 }
 

@@ -43,8 +43,7 @@ namespace FileEncryptor
         }
 
         private void buttonAction_Click(object sender, EventArgs e)
-        {
-                     
+        {                     
             LoadFiles();
             if (radioDecrypt.Checked)
             {
@@ -113,7 +112,7 @@ namespace FileEncryptor
 
         private void LoadFiles()
         {
-            foreach (var item in filesBox.SelectedItems)
+            foreach (var item in filesBox.Items)
             {
                 var filePath = filesBox.GetItemText(item);
                 files.Add(filePath);                
@@ -264,17 +263,12 @@ namespace FileEncryptor
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
-        {            
+        {
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 filesBox.Items.Clear();
                 files.Clear();
-                foreach (var file in fileDialog.FileNames)
-                {
-                    filesBox.Items.Add(file);
-                    filesBox.SetSelected(filesBox.Items.Count-1,true);
-                }
-                folder = new FileInfo(fileDialog.FileNames.FirstOrDefault()).DirectoryName;
+                LoadFilesIntoListBox(fileDialog.FileNames);                
             }
         }
 
@@ -285,6 +279,53 @@ namespace FileEncryptor
                 outputFolder = outputFolderDialog.SelectedPath;
                 lblOutputFolder.Text = outputFolder;
             }
+        }
+
+        private void filesBox_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            LoadFilesIntoListBox(files);
+        }
+
+        private void filesBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        private void LoadFilesIntoListBox(string[] selectedFiles)
+        {
+            files.Clear();
+            foreach (var file in selectedFiles)
+            {
+                filesBox.Items.Add(file);
+            }
+            folder = new FileInfo(fileDialog.FileNames.FirstOrDefault()).DirectoryName;
+
+            CalculateFilesSize();
+        }
+
+        private void filesBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                for (int i = 0; i < filesBox.SelectedItems.Count; i++)
+                {
+                    filesBox.Items.Remove(filesBox.SelectedItems[i]);
+                    i--;
+                    CalculateFilesSize();
+                }
+            }
+        }
+
+        private void CalculateFilesSize()
+        {
+            decimal filesSize = 0;           
+            foreach (var item in filesBox.Items)
+            {
+                filesSize += new FileInfo(filesBox.GetItemText(item)).Length / (1024 * 1024 * 1024m);
+            }
+
+            lblFilesSize.Text = String.Format("{0:0.##} GB", filesSize);
         }
     }
 }
