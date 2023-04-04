@@ -168,11 +168,11 @@ namespace FileEncryptor
 
         private void EncryptFiles()
         {
+            buttonAction.Enabled = false;
             var key = textKey.Text;
             thread = new Thread(() => {
                 var passed = true;
-                foreach (var filePath in files)
-                {
+                Parallel.ForEach(files,filePath => { 
                     var fileInfo = new FileInfo(filePath);
                     var fileName = fileInfo.Name.Replace(fileInfo.Extension, outputExtension);
                     try
@@ -185,7 +185,7 @@ namespace FileEncryptor
                         ReportThreadStatus("fail", exp.GetBaseException().Message + "\n File:" + filePath);
                         passed = false;
                     }
-                }
+                });
                 if(passed)
                     ReportThreadStatus("finish", "All files encrypted successfull");
                 else
@@ -204,6 +204,8 @@ namespace FileEncryptor
             {
                 Action safeWrite = delegate
                 {
+                    if(status.Contains("finish"))
+                        buttonAction.Enabled = true;
                     list.AddRange(textStatus.Lines);
                     list.Add(message);
                     if (status=="pass")
@@ -232,10 +234,12 @@ namespace FileEncryptor
         }
         private void DecryptFiles()
         {
+            buttonAction.Enabled = false;
             var key = textKey.Text;
-            thread = new Thread(() => {
+            thread = new Thread(() =>
+            {
                 var passed = true;
-                foreach (var filePath in files)
+                Parallel.ForEach(files, filePath =>
                 {
                     var fileInfo = new FileInfo(filePath);
                     var fileName = fileInfo.Name.Replace(fileInfo.Extension, outputExtension);
@@ -249,7 +253,8 @@ namespace FileEncryptor
                         ReportThreadStatus("fail", exp.GetBaseException().Message + "\n File:" + filePath);
                         passed = false;
                     }
-                }
+                });
+
                 if (passed)
                     ReportThreadStatus("finish", "All files decrypted successfull");
             });
