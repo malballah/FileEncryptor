@@ -21,8 +21,7 @@ namespace FileEncryptor
     public partial class FEForm:Form
     {
         string folder;
-        string outputFolder;
-        string outputExtension;
+        string outputFolder="Z:\\";
         Thread thread;
         List<string> files=new List<string>();
         public FEForm()
@@ -43,7 +42,8 @@ namespace FileEncryptor
         }
 
         private void buttonAction_Click(object sender, EventArgs e)
-        {                     
+        {      
+            textStatus.Text= "";
             LoadFiles();
             if (radioDecrypt.Checked)
             {
@@ -115,27 +115,16 @@ namespace FileEncryptor
             foreach (var item in filesBox.Items)
             {
                 var filePath = filesBox.GetItemText(item);
-                files.Add(filePath);                
-            }
-            if (textExt.Text.Trim() == string.Empty)
-            {
-                if (radioEncrypt.Checked)
-                {
-                    textExt.Text = "dll";
-                }
-                else
-                {
-                    textExt.Text = "mp4";
-                }
-            }
-            outputExtension = "." + textExt.Text;
+                files.Add(filePath);
+            } 
         }
+        
 
         private void Clear()
         {
             files.Clear();
-            textExt.Text = string.Empty;
-            outputExtension=string.Empty;
+            mp4RB.Checked = true;
+            mp4RB.Checked = true;
             textStatus.ForeColor = Color.Black;
             textKey.Text = string.Empty;
             textKeyConfirm.Text = string.Empty;
@@ -174,7 +163,7 @@ namespace FileEncryptor
                 var passed = true;
                 Parallel.ForEach(files,filePath => { 
                     var fileInfo = new FileInfo(filePath);
-                    var fileName = fileInfo.Name.Replace(fileInfo.Extension, outputExtension);
+                    var fileName = fileInfo.Name.Replace(fileInfo.Extension, GetOutputExtension());
                     try
                     {
                         Encryptor.EncryptFile(filePath, Path.Combine(outputFolder, fileName), key);
@@ -242,7 +231,7 @@ namespace FileEncryptor
                 Parallel.ForEach(files, filePath =>
                 {
                     var fileInfo = new FileInfo(filePath);
-                    var fileName = fileInfo.Name.Replace(fileInfo.Extension, outputExtension);
+                    var fileName = fileInfo.Name.Replace(fileInfo.Extension, GetOutputExtension());
                     try
                     {
                         Encryptor.DecryptFile(filePath, Path.Combine(outputFolder, fileName), key);
@@ -332,5 +321,27 @@ namespace FileEncryptor
 
             lblFilesSize.Text = String.Format("{0:0.##} GB", filesSize);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            filesBox.Items.Clear();
+        }
+
+        private string GetOutputExtension()
+        {
+            if (radioEncrypt.Checked)
+            {
+                return ".dll";
+            }
+            else
+            {
+                if (mp4RB.Checked)
+                    return ".mp4";
+                else if (jpgRB.Checked)
+                    return ".jpg";
+                else return "";
+            }
+        }
+      
     }
 }

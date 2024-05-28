@@ -9,3 +9,14 @@ D:\Private\Projects\Repos\FileEncryptor\obj\Debug\FileEncryptor.csproj.GenerateR
 D:\Private\Projects\Repos\FileEncryptor\obj\Debug\FileEncryptor.csproj.CoreCompileInputs.cache
 D:\Private\Projects\Repos\FileEncryptor\obj\Debug\FileEncryptor.exe
 D:\Private\Projects\Repos\FileEncryptor\obj\Debug\FileEncryptor.pdb
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\bin\Debug\FileEncryptor.exe.config
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\bin\Debug\FileEncryptor.exe
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\bin\Debug\FileEncryptor.pdb
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\obj\Debug\FileEncryptor.csproj.AssemblyReference.cache
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\obj\Debug\FileEncryptor.csproj.SuggestedBindingRedirects.cache
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\obj\Debug\FileEncryptor.FEForm.resources
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\obj\Debug\FileEncryptor.Properties.Resources.resources
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\obj\Debug\FileEncryptor.csproj.GenerateResource.cache
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\obj\Debug\FileEncryptor.csproj.CoreCompileInputs.cache
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\obj\Debug\FileEncryptor.exe
+D:\Windows Backup Files_Delete\Tools\FileEncryptor\obj\Debug\FileEncryptor.pdb

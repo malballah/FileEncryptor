@@ -46,7 +46,6 @@ namespace FileEncryptor
             this.confirmKeyLbl = new System.Windows.Forms.Label();
             this.textKeyConfirm = new System.Windows.Forms.TextBox();
             this.errorKeysLbl = new System.Windows.Forms.Label();
-            this.textExt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtBoxDeleteAfter = new System.Windows.Forms.TextBox();
@@ -55,6 +54,9 @@ namespace FileEncryptor
             this.outputFolderButton = new System.Windows.Forms.Button();
             this.lblOutputFolder = new System.Windows.Forms.Label();
             this.lblFilesSize = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.mp4RB = new System.Windows.Forms.RadioButton();
+            this.jpgRB = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -182,21 +184,14 @@ namespace FileEncryptor
             this.errorKeysLbl.Size = new System.Drawing.Size(0, 13);
             this.errorKeysLbl.TabIndex = 3;
             // 
-            // textExt
-            // 
-            this.textExt.Location = new System.Drawing.Point(353, 88);
-            this.textExt.Name = "textExt";
-            this.textExt.Size = new System.Drawing.Size(127, 20);
-            this.textExt.TabIndex = 19;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(215, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 13);
+            this.label3.Size = new System.Drawing.Size(88, 13);
             this.label3.TabIndex = 20;
-            this.label3.Text = "Output Extension(Ex: mp4)";
+            this.label3.Text = "Output Extension";
             // 
             // label4
             // 
@@ -242,8 +237,9 @@ namespace FileEncryptor
             this.lblOutputFolder.AutoSize = true;
             this.lblOutputFolder.Location = new System.Drawing.Point(14, 280);
             this.lblOutputFolder.Name = "lblOutputFolder";
-            this.lblOutputFolder.Size = new System.Drawing.Size(0, 13);
+            this.lblOutputFolder.Size = new System.Drawing.Size(27, 13);
             this.lblOutputFolder.TabIndex = 25;
+            this.lblOutputFolder.Text = "Z:\\\\";
             // 
             // lblFilesSize
             // 
@@ -253,11 +249,46 @@ namespace FileEncryptor
             this.lblFilesSize.Size = new System.Drawing.Size(0, 13);
             this.lblFilesSize.TabIndex = 26;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(122, 63);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 27;
+            this.button1.Text = "Clear Files";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // mp4RB
+            // 
+            this.mp4RB.AutoSize = true;
+            this.mp4RB.Checked = true;
+            this.mp4RB.Location = new System.Drawing.Point(332, 89);
+            this.mp4RB.Name = "mp4RB";
+            this.mp4RB.Size = new System.Drawing.Size(47, 17);
+            this.mp4RB.TabIndex = 28;
+            this.mp4RB.TabStop = true;
+            this.mp4RB.Text = "MP4";
+            this.mp4RB.UseVisualStyleBackColor = true;
+            // 
+            // jpgRB
+            // 
+            this.jpgRB.AutoSize = true;
+            this.jpgRB.Location = new System.Drawing.Point(393, 89);
+            this.jpgRB.Name = "jpgRB";
+            this.jpgRB.Size = new System.Drawing.Size(45, 17);
+            this.jpgRB.TabIndex = 29;
+            this.jpgRB.Text = "JPG";
+            this.jpgRB.UseVisualStyleBackColor = true;
+            // 
             // FEForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 344);
+            this.Controls.Add(this.jpgRB);
+            this.Controls.Add(this.mp4RB);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblFilesSize);
             this.Controls.Add(this.lblOutputFolder);
             this.Controls.Add(this.outputFolderButton);
@@ -265,7 +296,6 @@ namespace FileEncryptor
             this.Controls.Add(this.txtBoxDeleteAfter);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textExt);
             this.Controls.Add(this.confirmKeyLbl);
             this.Controls.Add(this.textKeyConfirm);
             this.Controls.Add(this.btnBrowse);
@@ -301,7 +331,6 @@ namespace FileEncryptor
         private System.Windows.Forms.Label confirmKeyLbl;
         private System.Windows.Forms.TextBox textKeyConfirm;
         private System.Windows.Forms.Label errorKeysLbl;
-        private System.Windows.Forms.TextBox textExt;
         private System.Windows.Forms.Label label3;
         private Label label4;
         private TextBox txtBoxDeleteAfter;
@@ -310,6 +339,9 @@ namespace FileEncryptor
         private Button outputFolderButton;
         private Label lblOutputFolder;
         private Label lblFilesSize;
+        private Button button1;
+        private RadioButton mp4RB;
+        private RadioButton jpgRB;
     }
 }
 
